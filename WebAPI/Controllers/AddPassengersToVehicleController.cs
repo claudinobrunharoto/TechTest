@@ -1,6 +1,7 @@
-﻿using Domain;
-using Microsoft.AspNetCore.Http;
+﻿using Domain.Interface;
+using Domain.Model;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Dto;
 
 namespace WebApplication1.Controllers
 {
@@ -8,54 +9,22 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class AddPassengersToVehicleController : ControllerBase
     {
-        [HttpGet("[action]")]
-        public IActionResult AddPassengersToVehicle(int number)
+        private readonly IVehicleFactory vehicleFactory;
+
+        public AddPassengersToVehicleController(IVehicleFactory vehicleFactory)
         {
-            try
-            {
-                new Car().Start(Person.CreateList(number));
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            this.vehicleFactory = vehicleFactory;
         }
 
-        [HttpGet("[action]")]
-        public IActionResult AddPassengersToCar(int number)
+        [HttpPost]
+        public IActionResult AddPassengersToVehicle([FromBody] AddPassengerToVehicleDto addPassengerToVehicleDto)
         {
             try
             {
-                new Car().Start(Person.CreateList(number));
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+                var vehicle = this.vehicleFactory.CreateVehicle(addPassengerToVehicleDto.VehicleType);
+                vehicle.AddPassengers(Person.CreateList(addPassengerToVehicleDto.Quantity));
+                vehicle.Start();
 
-        [HttpGet("[action]")]
-        public IActionResult AddPassengersToMotorBike(int number)
-        {
-            try
-            {
-                new MotorBike().Start(Person.CreateList(number));
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpGet("[action]")]
-        public IActionResult AddPassengersToCoach(int number)
-        {
-            try
-            {
-                new Coach().Start(Person.CreateList(number));
                 return Ok();
             }
             catch (Exception ex)
