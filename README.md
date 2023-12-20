@@ -30,3 +30,15 @@
 ### FMX files are like the Front-End part of Delphi projects while PAS files are the Back-End code.
 
 # Our code overview
+![img1](https://github.com/claudinobrunharoto/TechTest/assets/58790242/27042f45-ad1b-4d8a-9dc9-a2a86ef970f6)
+#### Image 1[^1]
+
+![img2](https://github.com/claudinobrunharoto/TechTest/assets/58790242/a8ab7be1-c3b4-4180-87e4-47d135932a11)
+#### Image 2[^2] 
+
+![img3](https://github.com/claudinobrunharoto/TechTest/assets/58790242/077f5186-45d2-4513-b92f-288fe824d4b9)
+#### Image 3[^3] 
+
+[^1]: This part of the code concatenates the text entered with the settings to use it as part of the URL that will access the API.
+[^2]: This part of the code is triggered upon receipt of the API response and loads the QR Code image on the screen.
+[^3]: Sample of the QR Code generated after querying the API.
